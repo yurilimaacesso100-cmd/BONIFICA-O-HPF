@@ -128,6 +128,27 @@ export default function App() {
       }
     });
 
+    // Adiciona o resumo dos itens com desconto (itens vendidos que geraram investimento)
+    const resumoItens: string[] = [];
+    blocos.forEach((b) => {
+      if (b.res.saldo > 0) {
+        const prodVenda = PRODUTOS_BD.find(p => p.id === b.vendaCod.trim());
+        const prodBonifica = PRODUTOS_BD.find(p => p.id === b.bonificaId);
+        if (prodVenda && prodBonifica) {
+          const precoAcaoFormatado = prodVenda.preco.toFixed(2).replace('.', ',');
+          // Formato assertivo: PRODUTO VENDIDO (PREÇO) -> BONIFICAÇÃO: PRODUTO
+          resumoItens.push(`${prodVenda.nome} ${precoAcaoFormatado} -> BONIF: ${prodBonifica.nome}`);
+        }
+      }
+    });
+
+    if (resumoItens.length > 0) {
+      msg += `\n`;
+      // Remove duplicatas para não repetir o mesmo item/preço no resumo
+      const resumoUnico = Array.from(new Set(resumoItens));
+      msg += resumoUnico.join('\n');
+    }
+
     const el = document.createElement('textarea');
     el.value = msg.trim();
     document.body.appendChild(el);
