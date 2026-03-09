@@ -9,7 +9,6 @@ import { PRODUTOS_BD, Produto } from './products';
 
 /**
  * BONIFICAÇÃO HF - v11.1
- * CRIADO POR YURI LIMA
  * REGRAS: Design Intocado | Arredondamento 0.52 | Base de Produtos Atualizada
  */
 
@@ -145,8 +144,8 @@ export default function App() {
       <header className="bg-[#001E62] text-white p-5 sticky top-0 z-50 shadow-xl border-b-4 border-yellow-400">
         <div className="max-w-xl mx-auto flex justify-between items-center">
           <div>
-            <h1 className="text-xl font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO HF</h1>
-            <p className="text-[9px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">CRIADO POR YURI LIMA</p>
+            <h1 className="text-xl font-black italic uppercase leading-none tracking-tighter">BONIFICAÇÃO UNILEVER</h1>
+            <p className="text-[9px] font-bold text-yellow-400 tracking-[0.2em] uppercase mt-1">Criado por Yuri Lima</p>
           </div>
           <button 
             onClick={copiarGeral} 
@@ -214,10 +213,7 @@ export default function App() {
             <div className="bg-white rounded-[2.8rem] shadow-xl overflow-hidden border border-slate-200">
               {/* VENDA */}
               <div className="p-7 pb-5 bg-slate-50 border-b border-dashed border-slate-200">
-                <div className="flex justify-between items-center mb-5">
-                   <h3 className="text-[10px] font-black text-blue-900 uppercase tracking-widest flex items-center gap-2">
-                     <ShoppingCart size={15} className="text-blue-600"/> Dados da Venda
-                   </h3>
+                <div className="flex justify-end items-center mb-5">
                    {blocos.length > 1 && (
                      <button onClick={() => removeBloco(bloco.uid)} className="bg-red-50 text-red-400 hover:text-red-600 p-2 rounded-full transition-colors">
                        <Trash2 size={16}/>
@@ -336,19 +332,8 @@ export default function App() {
 
       {/* FOOTER RESUMO */}
       <footer className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t-2 border-slate-200 p-5 shadow-2xl z-40">
-        <div className="max-w-xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-             <div className="bg-blue-900 p-4 rounded-2xl text-white shadow-xl">
-               <Calculator size={22}/>
-             </div>
-             <div>
-               <p className="text-[9px] font-black text-slate-400 uppercase mb-0.5 tracking-widest">Total Bonificado</p>
-               <h4 className="text-2xl font-black text-slate-900 leading-none">
-                 {blocos.reduce((acc, b) => acc + b.res.bonus, 0)} <span className="text-xs text-slate-400 font-bold uppercase ml-1">Unidades</span>
-               </h4>
-             </div>
-          </div>
-          <div className="text-right">
+        <div className="max-w-xl mx-auto flex items-center justify-center">
+          <div className="text-center">
              <p className="text-[9px] font-black text-slate-400 uppercase mb-0.5 tracking-widest">Investimento Total</p>
              <h4 className="text-2xl font-black text-green-600 leading-none">
                {formatarMoeda(blocos.reduce((acc, b) => acc + b.res.saldo, 0))}
